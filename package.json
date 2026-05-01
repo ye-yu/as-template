@@ -1,0 +1,39 @@
+{
+  "name": "as-template",
+  "version": "1.0.0",
+  "description": "Personal project assemblyscript template with fix for transformer fs functions",
+  "homepage": "https://github.com/ye-yu/as-template#readme",
+  "bugs": {
+    "url": "https://github.com/ye-yu/as-template/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ye-yu/as-template.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "main": "src/index.ts",
+  "devDependencies": {
+    "@types/node": "^24.12.2",
+    "@typescript/native-preview": "^7.0.0-dev.20260428.1",
+    "@ye-yu/assemblyscript": "^0.0.0-transform-fs.1",
+    "assemblyscript": "^0.0.0-transform-fs.1"
+  },
+  "scripts": {
+    "test": "node --test",
+    "asc": "node --import ./lib/loader.ts ./node_modules/@ye-yu/assemblyscript/bin/asc.js",
+    "asinit": "node --import ./lib/loader.ts ./node_modules/@ye-yu/assemblyscript/bin/asinit.js",
+    "asbuild:debug": "npm run asc -- --transform ./lib/transform.ts assembly/index.ts --target debug",
+    "asbuild:release": "npm run asc -- --transform ./lib/transform.ts assembly/index.ts --target release",
+    "asbuild": "npm run asbuild:debug && npm run asbuild:release",
+    "start": "npx serve .",
+    "login": "npm login @scope=ye-yu --auth-type=legacy --registry=https://npm.pkg.github.com"
+  },
+  "exports": {
+    ".": {
+      "import": "./build/release.js",
+      "types": "./build/release.d.ts"
+    }
+  }
+}
